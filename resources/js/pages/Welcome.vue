@@ -10,10 +10,21 @@
 
                 <v-btn
                     v-for="link in links"
-                    :key="link"
-                    :text="link"
+                    :key="link.name"
+                    :text="link.name"
                     variant="text"
-                ></v-btn>
+                  
+                >
+                <Link
+                    v-if="link.route === 'login' || link.route === 'register'"
+                    :href="route(link.route)"
+                    class="text-decoration-none"
+                >
+                    {{ link.name }}
+                </Link>
+                <span v-else>{{ link.name }}</span>
+       
+                </v-btn>
 
                 <v-spacer></v-spacer>
 
@@ -31,7 +42,7 @@
             </v-container>
         </v-app-bar>
 
-        <v-main class="bg-grey-lighten-3">
+        <v-main class="bg-white">
             <v-container>
                 <v-row>
                     <v-col cols="2">
@@ -70,11 +81,18 @@
 </template>
 
 <script setup>
+import { Link } from '@inertiajs/vue3';
+
+
+
+
 const links = [
-    'Dashboard',
-    'Messages',
-    'Profile',
-    'Updates',
+   { name:'Dashboard', route: 'dashboard'},
+   { name:'Messages', route:'dashboard'},
+   {name:'Profile', route: 'dashborad'},
+   {name:'Updates', route: 'dashborad'},
+   {name:'Log In', route:'login'},
+   { name:'Register',route:'register'},
 ]
 </script>
 
